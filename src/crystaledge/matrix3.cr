@@ -57,4 +57,13 @@ module CrystalEdge
       self * make_rotation(a)
     end
   end
+
+  class Vector2
+    def *(other : Matrix3)
+      Vector2.new(
+        self.x*other[0,0] + self.y*other[1,0] + other[2,0]
+        self.x*other[0,1] + self.y*other[1,1] + other[2,1]
+      )
+    end
+  end
 end

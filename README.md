@@ -18,7 +18,7 @@ dependencies:
 
 TODO List:
 - [x] Vector2 math
-  - [ ] Vector2 * Matrix3
+  - [x] Vector2 * Matrix3
   - [x] Vector2 tests
   - [ ] Vector2 docs
 - [x] Vector3 math
