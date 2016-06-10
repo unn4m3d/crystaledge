@@ -29,18 +29,24 @@ TODO List:
 - [x] Vector2 math
   - [ ] Vector2 * Matrix3
   - [x] Vector2 tests
+  - [ ] Vector2 docs
 - [x] Vector3 math
   - [ ] Vector3 * Matrix4
   - [ ] Vector3 rotation and reflection
   - [x] Vector3 tests
+  - [ ] Vector3 docs
 - [x] Vector4 math
   - [x] Vector4 tests
+  - [ ] Vector4 docs
 - [ ] Matrix3 math
   - [ ] Matrix3 tests
+  - [ ] Matrix3 docs
 - [ ] Matrix4 math
   - [ ] Matrix4 tests
-- [x] Quaternions
-  - [x] Quaternions tests
+  - [ ] Matrix4 docs
+- [x] Quaternion
+  - [x] Quaternion tests
+  - [ ] Quaternion docs
 
 ## Contributing
 
