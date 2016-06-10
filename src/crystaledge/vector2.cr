@@ -58,6 +58,10 @@ module CrystalEdge
       Vector2.new(self.x-other,self.y-other)
     end
 
+    def -
+      Vector2.new(-self.x,-self.y)
+    end
+
     def *(other : Vector2)
       Vector2.new(self.x*other.x,self.y*other.y)
     end
@@ -106,6 +110,14 @@ module CrystalEdge
 
     def !=(other : Vector2)
       self.x != other.x || self.y != other.y #TODO : Comparsion with EPSILON
+    end
+
+    def as(t : String.class)
+      return "{X: #{x}; Y : #{y}}"
+    end
+
+    def to_s
+      as(String)
     end
   end
 end

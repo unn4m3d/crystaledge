@@ -29,10 +29,10 @@ TODO List:
 - [x] Vector2 math
   - [ ] Vector2 * Matrix3
   - [x] Vector2 tests
-- [ ] Vector3 math
+- [x] Vector3 math
   - [ ] Vector3 * Matrix4
   - [ ] Vector3 rotation and reflection
-  - [ ] Vector3 tests
+  - [x] Vector3 tests
 - [ ] Vector4 math
   - [ ] Vector4 tests
 - [ ] Matrix3 math
