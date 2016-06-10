@@ -13,7 +13,7 @@ module CrystalEdge
 
     # Zero vector
     def self.zero
-      return Vector2.new(0,0)
+      return Vector2.new(0.0,0.0)
     end
 
     # Dot product
@@ -111,13 +111,9 @@ module CrystalEdge
     def !=(other : Vector2)
       self.x != other.x || self.y != other.y #TODO : Comparsion with EPSILON
     end
-
-    def as(t : String.class)
-      return "{X: #{x}; Y : #{y}}"
-    end
-
+    
     def to_s
-      as(String)
+      "{X : #{x}; Y : #{y}}"
     end
   end
 end

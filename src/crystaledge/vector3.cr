@@ -118,12 +118,8 @@ module CrystalEdge
       self.x != other.x || self.y != other.y || self.z != other.z #TODO : Comparsion with EPSILON
     end
 
-    def as(t : String.class)
-      return "{X: #{x}; Y : #{y}; Z : #{z}}"
-    end
-
     def to_s
-      as(String)
+      "{X : #{x}; Y : #{y}; Z : #{z}}"
     end
 
     #TODO : Rotation and reflection
