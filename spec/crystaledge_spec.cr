@@ -5,6 +5,7 @@ alias V3 = CrystalEdge::Vector3
 alias V4 = CrystalEdge::Vector4
 alias Q  = CrystalEdge::Quaternion
 alias M3 = CrystalEdge::Matrix3
+alias M4 = CrystalEdge::Matrix4
 
 describe CrystalEdge do
   it "passes Vector2 tests" do
@@ -70,6 +71,21 @@ describe CrystalEdge do
     m0 = M3.new{|i| 0.0}
     m1 = M3.new{|i| i.to_f}
     m2 = M3.new{|i| 2.0*i}
+
+    (m1 == m2).should eq(false)
+    (m1 != m2).should eq(true)
+    (m0 == m0).should eq(true)
+    (m0 + m1).should eq(m1)
+    (m1*2.0).should eq(m2)
+
+    m0.make_translation!(V2.new(0.0,1.0))
+    m0[1,2].should eq(1.0)
+  end
+
+  it "passes Matrix4 tests" do
+    m0 = M4.new{|i| 0.0}
+    m1 = M4.new{|i| i.to_f}
+    m2 = M4.new{|i| 2.0*i}
 
     (m1 == m2).should eq(false)
     (m1 != m2).should eq(true)
