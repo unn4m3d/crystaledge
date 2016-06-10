@@ -21,14 +21,18 @@ TODO List:
   - [x] Vector2 * Matrix3
   - [x] Vector2 tests
   - [ ] Vector2 docs
+  - [ ] "Dangerous" versions of Vector2 methods
 - [x] Vector3 math
   - [x] Vector3 * Matrix4
-  - [ ] Vector3 rotation and reflection
+  - [x] Vector3 rotation
+  - [x] Vector3 reflection
   - [x] Vector3 tests
   - [ ] Vector3 docs
+  - [ ] "Dangerous" versions of Vector3 methods
 - [x] Vector4 math
   - [x] Vector4 tests
   - [ ] Vector4 docs
+  - [ ] "Dangerous" versions of Vector4 methods
 - [x] Matrix3 math
   - [x] Matrix3 tests
   - [ ] Matrix3 docs

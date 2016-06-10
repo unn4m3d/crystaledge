@@ -188,4 +188,25 @@ module CrystalEdge
       end
     end
   end
+
+  class Vector3
+    def rotate(q : Quaternion)
+      qi = q.conjugate
+      qq = (q*self)*qi
+      Vector3.new(
+        qq.x,
+        qq.y,
+        qq.z
+      )
+    end
+
+    def reflect(q : Quaternion)
+      qq = ((q*self)*q).normalize
+      Vector3.new(
+        qq.x,
+        qq.y,
+        qq.z
+      )
+    end
+  end
 end
