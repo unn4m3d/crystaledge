@@ -22,7 +22,7 @@ TODO List:
   - [x] Vector2 tests
   - [ ] Vector2 docs
 - [x] Vector3 math
-  - [ ] Vector3 * Matrix4
+  - [x] Vector3 * Matrix4
   - [ ] Vector3 rotation and reflection
   - [x] Vector3 tests
   - [ ] Vector3 docs
