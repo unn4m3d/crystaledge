@@ -33,14 +33,14 @@ TODO List:
   - [ ] Vector3 * Matrix4
   - [ ] Vector3 rotation and reflection
   - [x] Vector3 tests
-- [ ] Vector4 math
-  - [ ] Vector4 tests
+- [x] Vector4 math
+  - [x] Vector4 tests
 - [ ] Matrix3 math
   - [ ] Matrix3 tests
 - [ ] Matrix4 math
   - [ ] Matrix4 tests
-- [ ] Quaternions
-  - [ ] Quaternions tests
+- [x] Quaternions
+  - [x] Quaternions tests
 
 ## Contributing
 
