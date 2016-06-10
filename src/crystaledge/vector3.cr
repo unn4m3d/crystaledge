@@ -90,14 +90,20 @@ module CrystalEdge
 
     def normalize!
       m = magnitude
-      self.x /= m
-      self.y /= m
-      self.z /= m
+      unless m == 0
+        self.x /= m
+        self.y /= m
+        self.z /= m
+      end
       self
     end
 
     def normalize
-      self / magnitude
+      if m == 0
+        self
+      else
+        self / magnitude
+      end
     end
 
     def find_normal_axis(other : Vector3)

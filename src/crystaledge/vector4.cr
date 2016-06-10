@@ -88,22 +88,26 @@ module CrystalEdge
 
     def normalize!
       m = magnitude
-      self.x /= m
-      self.y /= m
-      self.z /= m
-      self.w /= m
+      unless m == 0
+        self.x /= m
+        self.y /= m
+        self.z /= m
+        self.w /= m
+      end
       self
     end
 
     def normalize
-      self / magnitude
+      if m == 0
+        self
+      else
+        self / magnitude
+      end
     end
 
     def distance(other : Vector4)
       return (self-other).magnitude
     end
-
-    #TODO : Add multipying by matrix
 
     def ==(other : Vector4)
       self.x == other.x && self.y == other.y && self.z == other.z && self.w == other.w #TODO : Comparsion with EPSILON

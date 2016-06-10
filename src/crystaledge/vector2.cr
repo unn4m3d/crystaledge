@@ -85,13 +85,19 @@ module CrystalEdge
 
     def normalize!
       m = magnitude
-      self.x /= m
-      self.y /= m
+      unless m == 0
+        self.x /= m
+        self.y /= m
+      end
       self
     end
 
     def normalize
-      self / magnitude
+      if m == 0
+        self
+      else
+        self / magnitude
+      end
     end
 
     def find_normal_axis(other : Vector2)
@@ -111,7 +117,7 @@ module CrystalEdge
     def !=(other : Vector2)
       self.x != other.x || self.y != other.y #TODO : Comparsion with EPSILON
     end
-    
+
     def to_s
       "{X : #{x}; Y : #{y}}"
     end

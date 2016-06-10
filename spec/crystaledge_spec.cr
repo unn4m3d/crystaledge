@@ -3,6 +3,7 @@ require "./spec_helper"
 alias V2 = CrystalEdge::Vector2
 alias V3 = CrystalEdge::Vector3
 alias V4 = CrystalEdge::Vector4
+alias Q  = CrystalEdge::Quaternion
 
 describe CrystalEdge do
   it "passes Vector2 tests" do
@@ -53,5 +54,14 @@ describe CrystalEdge do
     (vec2+vec3).should eq(vec2*2.0)
     (vec2-vec1).should eq(vec2)
     (vec2*vec3).should eq(V4.new(1.0,4.0,9.0,16.0))
+  end
+
+  it "passes Quaternion tests" do
+    q1 = Q.new(1.0,1.0,1.0,1.0)
+    q2 = Q.new(-1.0,-1.0,-1.0,1.0)
+    q3 = Q.new(1.0,1.0,1.0,-1.0)
+    q1.conjugate.should eq(q2)
+    (-(q1.conjugate)).should eq(q3)
+    (q2+q3).should eq(Q.zero)
   end
 end
