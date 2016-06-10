@@ -32,8 +32,8 @@ TODO List:
 - [x] Matrix3 math
   - [x] Matrix3 tests
   - [ ] Matrix3 docs
-- [ ] Matrix4 math
-  - [ ] Matrix4 tests
+- [x] Matrix4 math
+  - [x] Matrix4 tests
   - [ ] Matrix4 docs
 - [x] Quaternion
   - [x] Quaternion tests
