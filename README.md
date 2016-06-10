@@ -14,15 +14,6 @@ dependencies:
     github: unn4m3d/crystaledge
 ```
 
-
-## Usage
-
-
-```crystal
-require "crystaledge"
-```
-
-
 ## Development
 
 TODO List:
@@ -38,8 +29,8 @@ TODO List:
 - [x] Vector4 math
   - [x] Vector4 tests
   - [ ] Vector4 docs
-- [ ] Matrix3 math
-  - [ ] Matrix3 tests
+- [x] Matrix3 math
+  - [x] Matrix3 tests
   - [ ] Matrix3 docs
 - [ ] Matrix4 math
   - [ ] Matrix4 tests
