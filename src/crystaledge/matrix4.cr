@@ -97,8 +97,8 @@ module CrystalEdge
   class Vector3
     def *(other : Matrix4)
       Vector3.new(
-        self.x*other[0,0] + self.y*other[1,0] + self.z*other[2,0] + other[3,0]
-        self.x*other[0,1] + self.y*other[1,1] + self.z*other[2,1] + other[3,1]
+        self.x*other[0,0] + self.y*other[1,0] + self.z*other[2,0] + other[3,0],
+        self.x*other[0,1] + self.y*other[1,1] + self.z*other[2,1] + other[3,1],
         self.x*other[0,2] + self.y*other[1,2] + self.z*other[2,2] + other[3,2]
       )
     end
