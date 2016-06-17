@@ -20,7 +20,7 @@ TODO List:
 - [x] Vector2 math
   - [x] Vector2 * Matrix3
   - [x] Vector2 tests
-  - [ ] Vector2 docs
+  - [x] Vector2 docs
   - [ ] "Dangerous" versions of Vector2 methods
 - [x] Vector3 math
   - [x] Vector3 * Matrix4
