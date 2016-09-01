@@ -82,10 +82,10 @@ module CrystalEdge
 
     def *(other : typeof(self))
       ret = clone
-      0.upto(size - 1) { |r|
-        0.upto(size - 1) { |c|
+      size.times { |r|
+        size.times { |c|
           res = 0.0
-          0.upto(size - 1) { |o|
+          size.times { |o|
             res += self[o, c]*other[r, o]
           }
           ret[r, c] = res
