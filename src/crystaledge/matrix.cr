@@ -96,8 +96,8 @@ module CrystalEdge
 
     def transpose
       ret = clone
-      0.upto(size - 1) { |r|
-        0.upto(size - 1) { |c|
+      size.times { |r|
+        size.times { |c|
           ret[r, c], ret[c, r] = ret[c, r], ret[r, c] unless r == c
         }
       }
