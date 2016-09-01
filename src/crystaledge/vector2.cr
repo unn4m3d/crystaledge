@@ -1,20 +1,18 @@
 require "math"
 
 module CrystalEdge
-  #Representation of 2D vector
+  # Representation of 2D vector
   class Vector2
-    getter x,y
-    setter x,y
-
+    property x, y
     @x : Float64
     @y : Float64
 
-    def initialize(@x,@y : Float64)
+    def initialize(@x, @y)
     end
 
     # Zero vector
     def self.zero
-      return Vector2.new(0.0,0.0)
+      return Vector2.new(0.0, 0.0)
     end
 
     # Returns dot product of two vectors
@@ -49,52 +47,58 @@ module CrystalEdge
 
     # Performs component addition
     def +(other : Vector2)
-      Vector2.new(self.x+other.x,self.y+other.y)
+      Vector2.new(self.x + other.x, self.y + other.y)
     end
 
     # Performs component addition
     def +(other : Float64)
-      Vector2.new(self.x+other,self.y+other)
+      Vector2.new(self.x + other, self.y + other)
     end
 
     # Performs component subtraction
     def -(other : Vector2)
-      Vector2.new(self.x-other.x,self.y-other.y)
+      Vector2.new(self.x - other.x, self.y - other.y)
     end
 
     # Performs component subtraction
     def -(other : Float64)
-      Vector2.new(self.x-other,self.y-other)
+      Vector2.new(self.x - other, self.y - other)
     end
 
     # Returns negated vector
     def -
-      Vector2.new(-self.x,-self.y)
+      Vector2.new(-self.x, -self.y)
     end
 
     # Performs component multiplication (for dot product see `#dot`)
     def *(other : Vector2)
-      Vector2.new(self.x*other.x,self.y*other.y)
+      Vector2.new(self.x*other.x, self.y*other.y)
     end
 
     # Performs multiplication
     def *(other : Float64)
       Vector2.new(self.x*other, self.y * other)
     end
+
     # Performs component division
     def /(other : Vector2)
-      Vector2.new(self.x/other.x,self.y/other.y)
+      Vector2.new(self.x/other.x, self.y/other.y)
     end
 
     # Performs division
     def /(other : Float64)
-      Vector2.new(self.x/other,self.y/other)
+      Vector2.new(self.x/other, self.y/other)
     end
 
     # Clones this vector and passes it into a block if given
+    def clone
+      Vector2.new(self.x, self.y)
+    end
+
     def clone(&b)
-      yield clone if block_given?
-      Vector2.new(self.x,self.y)
+      c = clone
+      b.call c
+      c
     end
 
     # Normalizes current vector
@@ -118,12 +122,12 @@ module CrystalEdge
 
     # Finds normal axis between two vectors
     def find_normal_axis(other : Vector2)
-      (self%other).normalize
+      (self % other).normalize
     end
 
     # Finds distance between two vectors
     def distance(other : Vector2)
-      return (self-other).magnitude
+      return (self - other).magnitude
     end
 
     def ==(other : Vector2)
