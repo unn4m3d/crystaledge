@@ -54,3 +54,4 @@ TODO List:
 ## Contributors
 
 - [unn4m3d](https://github.com/unn4m3d) - creator, maintainer
+- [l3kn](https://github.com/l3kn)
