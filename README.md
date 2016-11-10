@@ -1,4 +1,5 @@
 # crystaledge
+[![Build Status](https://travis-ci.org/unn4m3d/crystaledge.svg?branch=master)](https://travis-ci.org/unn4m3d/crystaledge)
 
 Pure Crystal vector math library (**WIP**)
 
