@@ -87,7 +87,8 @@ module CrystalEdge
 
     # Performs division
     def /(other : Float64)
-      Vector2.new(self.x/other, self.y/other)
+      # Multiply by the inverse => only do 1 division instead of 3
+      self * (1.0 / other)
     end
 
     # Clones this vector and passes it into a block if given
@@ -105,8 +106,9 @@ module CrystalEdge
     def normalize!
       m = magnitude
       unless m == 0
-        self.x /= m
-        self.y /= m
+        inverse = 1.0 / m
+        self.x *= inverse
+        self.y *= inverse
       end
       self
     end

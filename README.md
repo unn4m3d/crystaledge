@@ -1,4 +1,5 @@
 # crystaledge
+[![Build Status](https://travis-ci.org/unn4m3d/crystaledge.svg?branch=master)](https://travis-ci.org/unn4m3d/crystaledge)
 
 Pure Crystal vector math library (**WIP**)
 
@@ -54,3 +55,4 @@ TODO List:
 ## Contributors
 
 - [unn4m3d](https://github.com/unn4m3d) - creator, maintainer
+- [l3kn](https://github.com/l3kn)

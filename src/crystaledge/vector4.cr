@@ -77,7 +77,8 @@ module CrystalEdge
     end
 
     def /(other : Float64)
-      Vector4.new(self.x/other, self.y/other, self.z/other, self.w/other)
+      # Multiply by the inverse => only do 1 division instead of 3
+      self * (1.0 / other)
     end
 
     def clone
@@ -93,10 +94,11 @@ module CrystalEdge
     def normalize!
       m = magnitude
       unless m == 0
-        self.x /= m
-        self.y /= m
-        self.z /= m
-        self.w /= m
+        inverse = 1.0 / m
+        self.x *= inverse
+        self.y *= inverse
+        self.z *= inverse
+        self.w *= inverse
       end
       self
     end
