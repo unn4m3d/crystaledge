@@ -23,7 +23,7 @@ macro matrix(size, type)
 
   def [](r,c : Number)
     if r < {{size}} && c < {{size}}
-      @matrix[r*3+c]
+      @matrix[r*{{size}}+c]
     else
       raise IndexError.new
     end
@@ -31,7 +31,7 @@ macro matrix(size, type)
 
   def []=(r,c : Number, val : {{type}})
     if r < {{size}} && c < {{size}}
-      @matrix[r*3+c] = val
+      @matrix[r*{{size}}+c] = val
     else
       raise IndexError.new
     end
@@ -49,16 +49,19 @@ macro matrix(size, type)
     {{size}}
   end
 
-  def transpose
-    ret = clone
+  def transpose!
     {% for r in (0..size) %}
       {% for c in (0..size) %}
         {% unless r == c %}
-          ret[{{c}},{{r}}],ret[{{r}},{{c}}] = ret[{{r}},{{c}}],ret[{{c}},{{r}}]
+          self[{{c}},{{r}}],self[{{r}},{{c}}] = self[{{r}},{{c}}],self[{{c}},{{r}}]
         {% end %}
       {% end %}
     {% end %}
-    ret
+    self
+  end
+
+  def transpose
+    clone.transpose!
   end
 
   include ::CrystalEdge::Matrix
@@ -74,7 +77,7 @@ module CrystalEdge
     end
 
     def !=(other : typeof(self))
-      0.upto(size*size - 1) { |i|
+      (size*size - 1).times { |i|
         return true unless other[i] == self[i]
       }
       false
