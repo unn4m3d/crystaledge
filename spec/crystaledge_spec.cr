@@ -25,6 +25,13 @@ describe CrystalEdge do
     V2.new(3.0,4.0).magnitude.should eq(5.0)
     (V2.new(0.0,3.0).distance(V2.new(4.0,0.0))).should eq(5.0)
     vec1.should eq(vec1)
+
+    vzero = V2.zero
+    vec1.zero!
+    vec1.should eq(vzero)
+    vec1.x = 42.0
+    vec1.should_not eq(vzero)
+    vec1.should eq(V2.new(42.0,0.0))
   end
 
   it "passes Vector3 tests" do
@@ -46,6 +53,14 @@ describe CrystalEdge do
     vec4.magnitude.should eq(5)
     vec5.magnitude.should eq(5)
     (vec5*2.0).magnitude.should eq(10)
+
+    vzero = V3.zero
+    vec5.zero!
+
+    vec5.should eq(vzero)
+    vec5.x = 42.0
+    vec5.should_not eq(vzero)
+    vec5.should eq(V3.new(42.0,0.0,0.0))
   end
 
   it "passes Vector4 tests" do
@@ -56,6 +71,15 @@ describe CrystalEdge do
     (vec2+vec3).should eq(vec2*2.0)
     (vec2-vec1).should eq(vec2)
     (vec2*vec3).should eq(V4.new(1.0,4.0,9.0,16.0))
+
+
+    vzero = V4.zero
+    vec1.zero!
+
+    vec1.should eq(vzero)
+    vec1.x = 42.0
+    vec1.should_not eq(vzero)
+    vec1.should eq(V4.new(42.0,0.0,0.0,0.0))
   end
 
   it "passes Quaternion tests" do

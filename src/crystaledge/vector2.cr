@@ -15,6 +15,10 @@ module CrystalEdge
       return Vector2.new(0.0, 0.0)
     end
 
+    def zero!
+      @x = @y = 0.0
+    end
+
     # Returns dot product of two vectors
     def dot(other : Vector2)
       x*other.x + y*other.y

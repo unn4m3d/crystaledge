@@ -17,6 +17,10 @@ module CrystalEdge
       return Vector4.new(0.0, 0.0, 0.0, 0.0)
     end
 
+    def zero!
+      @x = @y = @z = @w = 0.0
+    end
+
     # Dot product
     def dot(other : Vector4)
       x*other.x + y*other.y + z*other.z
