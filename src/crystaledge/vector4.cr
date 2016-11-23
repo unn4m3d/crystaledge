@@ -85,7 +85,9 @@ module CrystalEdge
     end
 
     def clone(&b)
-      yield clone if block_given?
+      c = clone
+      b.call c
+      c
     end
 
     def normalize!

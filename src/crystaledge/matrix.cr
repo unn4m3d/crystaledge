@@ -49,6 +49,18 @@ macro matrix(size, type)
     {{size}}
   end
 
+  def transpose
+    ret = clone
+    {% for r in (0..size) %}
+      {% for c in (0..size) %}
+        {% unless r == c %}
+          ret[{{c}},{{r}}],ret[{{r}},{{c}}] = ret[{{r}},{{c}}],ret[{{c}},{{r}}]
+        {% end %}
+      {% end %}
+    {% end %}
+    ret
+  end
+
   include ::CrystalEdge::Matrix
 end
 
@@ -89,16 +101,6 @@ module CrystalEdge
             res += self[o, c]*other[r, o]
           }
           ret[r, c] = res
-        }
-      }
-      ret
-    end
-
-    def transpose
-      ret = clone
-      size.times { |r|
-        size.times { |c|
-          ret[r, c], ret[c, r] = ret[c, r], ret[r, c] unless r == c
         }
       }
       ret
