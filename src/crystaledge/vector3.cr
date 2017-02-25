@@ -13,7 +13,7 @@ module CrystalEdge
 
     # Zero vector
     def self.zero
-      return Vector3.new(0.0, 0.0, 0.0)
+      Vector3.new(0.0, 0.0, 0.0)
     end
 
     def zero!
@@ -138,6 +138,9 @@ module CrystalEdge
       "{X : #{x}; Y : #{y}; Z : #{z}}"
     end
 
-    # TODO : Rotation and reflection
+    def rotate(q : Quaternion)
+      quat = q * self * q.conjugate
+      Vector3.new(quat.x, quat.y, quat.z)
+    end
   end
 end

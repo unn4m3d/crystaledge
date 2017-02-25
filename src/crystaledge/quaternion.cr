@@ -14,6 +14,18 @@ module CrystalEdge
     def initialize(@x,@y,@z,@w : Float64)
     end
 
+    def self.from_euler(euler : Vector3)
+      ycos, ysin = Math.cos(euler.x * 0.5), Math.sin(euler.x * 0.5)
+      pcos, psin = Math.cos(euler.y * 0.5), Math.sin(euler.y * 0.5)
+      rcos, rsin = Math.cos(euler.z * 0.5), Math.sin(euler.z * 0.5)
+      new(
+        ycos * rsin * pcos - ysin * rcos * psin,
+        ycos * rcos * psin + ysin * rsin * pcos,
+        ysin * rcos * pcos - ycos * rsin * psin,
+        ycos * rcos * pcos + ysin * rsin * psin
+      )
+    end
+
     # Zero vector
     def self.zero
       return Quaternion.new(0.0,0.0,0.0,0.0)
