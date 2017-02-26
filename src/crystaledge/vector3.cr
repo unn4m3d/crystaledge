@@ -109,11 +109,7 @@ module CrystalEdge
     end
 
     def normalize
-      if m == 0
-        self
-      else
-        self / magnitude
-      end
+      clone.normalize!
     end
 
     def find_normal_axis(other : Vector3)

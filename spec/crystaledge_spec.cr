@@ -32,6 +32,7 @@ describe CrystalEdge do
     vec1.x = 42.0
     vec1.should_not eq(vzero)
     vec1.should eq(V2.new(42.0,0.0))
+    vec1.normalize.magnitude.should eq(1.0)
   end
 
   it "passes Vector3 tests" do
@@ -61,6 +62,7 @@ describe CrystalEdge do
     vec5.x = 42.0
     vec5.should_not eq(vzero)
     vec5.should eq(V3.new(42.0,0.0,0.0))
+    vec5.normalize.magnitude.should eq(1.0)
   end
 
   it "passes Vector4 tests" do
@@ -80,6 +82,7 @@ describe CrystalEdge do
     vec1.x = 42.0
     vec1.should_not eq(vzero)
     vec1.should eq(V4.new(42.0,0.0,0.0,0.0))
+    vec1.normalize.magnitude.should eq(1.0)
   end
 
   it "passes Quaternion tests" do

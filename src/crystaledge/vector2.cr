@@ -119,11 +119,7 @@ module CrystalEdge
 
     # Non-aggressive version of `#normalize!`
     def normalize
-      if m == 0
-        self
-      else
-        self / magnitude
-      end
+      clone.normalize!
     end
 
     # Finds normal axis between two vectors
