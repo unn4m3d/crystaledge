@@ -28,7 +28,7 @@ module CrystalEdge
 
     # Zero vector
     def self.zero
-      return Quaternion.new(0.0,0.0,0.0,0.0)
+      new(0.0,0.0,0.0,0.0)
     end
 
     # Dot product
