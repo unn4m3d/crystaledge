@@ -3,32 +3,66 @@ require "./vector3"
 
 module CrystalEdge
   class Quaternion
-    getter x,y,z,w
-    setter x,y,z,w
+    getter x, y, z, w
+    setter x, y, z, w
 
     @x : Float64
     @y : Float64
     @z : Float64
     @w : Float64
 
-    def initialize(@x,@y,@z,@w : Float64)
+    def initialize(@x, @y, @z, @w : Float64)
     end
 
+    # Converts euler angles to Quaternion
+    # Angles are in radians!
     def self.from_euler(euler : Vector3)
-      ycos, ysin = Math.cos(euler.x * 0.5), Math.sin(euler.x * 0.5)
-      pcos, psin = Math.cos(euler.y * 0.5), Math.sin(euler.y * 0.5)
-      rcos, rsin = Math.cos(euler.z * 0.5), Math.sin(euler.z * 0.5)
+      sx, sy, sz = euler.x / 2.0, euler.y / 2.0, euler.z / 2.0
+      c1 = Math.cos sy
+      s1 = Math.sin sy
+      c2 = Math.cos sx
+      s2 = Math.sin sx
+      c3 = Math.cos sz
+      s3 = Math.sin sz
       new(
-        ycos * rsin * pcos - ysin * rcos * psin,
-        ycos * rcos * psin + ysin * rsin * pcos,
-        ysin * rcos * pcos - ycos * rsin * psin,
-        ycos * rcos * pcos + ysin * rsin * psin
+        c1 * c2 * s3 + s1 * s2 * c3,
+        s1 * c2 * c3 + c1 * s2 * s3,
+        c1 * s2 * c3 - s1 * c2 * s3,
+        c1 * c2 * c3 - s1 * s2 * s3
       )
+    end
+
+    def to_euler
+      sqw = self.w**2
+      sqx = self.x**2
+      sqy = self.y**2
+      sqz = self.z**2
+      unit = sqx + sqy + sqz + sqw
+      test = self.x*self.y + self.z*self.w
+      if test > 0.4999 * unit
+        Vector3.new(
+          Math::PI/2,
+          2 * Math.atan2(self.x, self.w),
+          0.0
+        )
+      elsif test < -0.4999 * unit
+        Vector3.new(
+          -Math::PI/2,
+          -2 * Math.atan2(self.x, self.w),
+          0.0
+        )
+      else
+        Vector3.new(
+          Math.asin(2*test/unit),
+          Math.atan2(2 * self.y * self.w - 2 * self.x * self.z, sqx - sqy - sqz + sqw),
+          Math.atan2(2 * self.x * self.w - 2 * self.y * self.z, -sqx + sqy - sqz + sqw)
+        )
+      end
     end
 
     # Zero vector
     def self.zero
-      new(0.0,0.0,0.0,0.0)
+      new(0.0, 0.0, 0.0, 0.0)
     end
 
     # Dot product
@@ -41,7 +75,7 @@ module CrystalEdge
     end
 
     def norm
-      self.x**2 + self.y**2 +self.z**2 + self.w**2
+      self.x**2 + self.y**2 + self.z**2 + self.w**2
     end
 
     def magnitude
@@ -49,20 +83,19 @@ module CrystalEdge
     end
 
     def +(other : Quaternion)
-      Quaternion.new(self.x+other.x,self.y+other.y,self.z+other.z,self.w+other.w)
+      Quaternion.new(self.x + other.x, self.y + other.y, self.z + other.z, self.w + other.w)
     end
 
-
     def -(other : Quaternion)
-      Quaternion.new(self.x-other.x,self.y-other.y,self.z-other.z,self.w-other.w)
+      Quaternion.new(self.x - other.x, self.y - other.y, self.z - other.z, self.w - other.w)
     end
 
     def -
-      Quaternion.new(-self.x,-self.y,-self.z,-self.w)
+      Quaternion.new(-self.x, -self.y, -self.z, -self.w)
     end
 
     def *(other : Quaternion)
-      Quaternion.new(self.x*other.x,self.y*other.y,self.z*other.z,self.w*other.w)
+      Quaternion.new(self.x*other.x, self.y*other.y, self.z*other.z, self.w*other.w)
     end
 
     def *(other : Vector3)
@@ -87,7 +120,7 @@ module CrystalEdge
     end
 
     def conjugate
-      Quaternion.new(-self.x,-self.y,-self.z,self.w)
+      Quaternion.new(-self.x, -self.y, -self.z, self.w)
     end
 
     def pure?
@@ -99,11 +132,11 @@ module CrystalEdge
     end
 
     def axis
-      Vector3.new(x,y,z)
+      Vector3.new(x, y, z)
     end
 
     def axis=(v : Vector3)
-      @x,@y,@z = v.x,v.y,v.z
+      @x, @y, @z = v.x, v.y, v.z
     end
 
     def angle
@@ -114,9 +147,8 @@ module CrystalEdge
       @w = v
     end
 
-    def clone(&b)
-      yield clone if block_given?
-      Quaternion.new(self.x,self.y,self.z,self.w)
+    def clone
+      Quaternion.new(self.x, self.y, self.z, self.w)
     end
 
     def normalize!
@@ -131,27 +163,20 @@ module CrystalEdge
     end
 
     def normalize
-      if m == 0
-        self
-      else
-        self / magnitude
-      end
+      clone.normalize!
     end
 
-
-    def ==(other : Quaternion)
-      self.x == other.x && self.y == other.y && self.z == other.z && self.w == other.w #TODO : Comparsion with EPSILON
-    end
+    def_equals x, y, z, w
 
     def !=(other : Quaternion)
-      self.x != other.x || self.y != other.y || self.z != other.z || self.w != other.w #TODO : Comparsion with EPSILON
+      self.x != other.x || self.y != other.y || self.z != other.z || self.w != other.w
     end
 
     def to_s
       "{X : #{x}; Y : #{y}, Z : #{z}, W: : #{w}}"
     end
 
-    def self.lerp(qstart,qend : Quaternion,percent : Float64)
+    def self.lerp(qstart, qend : Quaternion, percent : Float64)
       if percent == 0
         return qstart
       elsif percent == 1
@@ -170,10 +195,10 @@ module CrystalEdge
     end
 
     def self.nlerp(qstart, qend : Quaternion, percent : Float64)
-      lerp(qstart,qend,percent).normalize
+      lerp(qstart, qend, percent).normalize
     end
 
-    def self.slerp(qstart,qend : Quaternion, percent : Float64)
+    def self.slerp(qstart, qend : Quaternion, percent : Float64)
       if percent == 0
         return qstart
       elsif percent == 1
@@ -181,11 +206,11 @@ module CrystalEdge
       else
         dot = qstart**qend
         if dot == 0
-          return lerp(qstart,qend,percent)
+          return lerp(qstart, qend, percent)
         elsif dot < 0
-          return -slerp(qstart,-qend,percent)
+          return -slerp(qstart, -qend, percent)
         else
-          dot = dot.clamp(-1.0,1.0)
+          dot = dot.clamp(-1.0, 1.0)
           theta = Math.acos(dot)
           s = Math.sin(theta)
           f1 = Math.sin((1.0 - percent) * theta) / s

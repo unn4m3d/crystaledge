@@ -1,5 +1,5 @@
 require "./crystaledge/*"
 
 module CrystalEdge
-  # TODO Put your code here
+  EPSILON = 0.0000000001
 end

@@ -1,4 +1,5 @@
 require "math"
+require "../crystaledge"
 
 module CrystalEdge
   class Vector3
@@ -120,14 +121,14 @@ module CrystalEdge
       return (self - other).magnitude
     end
 
-    # TODO : Add multipying by matrix
-
-    def ==(other : Vector3)
-      self.x == other.x && self.y == other.y && self.z == other.z # TODO : Comparsion with EPSILON
+    def ==(other : self)
+      (self.x - other.x).abs <= EPSILON &&
+      (self.y - other.y).abs <= EPSILON &&
+      (self.z - other.z).abs <= EPSILON
     end
 
     def !=(other : Vector3)
-      self.x != other.x || self.y != other.y || self.z != other.z # TODO : Comparsion with EPSILON
+      !(self == other)
     end
 
     def to_s
