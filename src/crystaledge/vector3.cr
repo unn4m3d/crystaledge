@@ -12,6 +12,16 @@ module CrystalEdge
     def initialize(@x, @y, @z : Float64)
     end
 
+    def initialize(angle : Vector3, length : Float64 = 1.0)
+      @x = 1.0
+      @y = @x * Math.tan(angle.z)
+      @z = @x * Math.tan(angle.y)
+      normalize!
+      @x *= length
+      @y *= length
+      @z *= length
+    end
+
     # Zero vector
     def self.zero
       Vector3.new(0.0, 0.0, 0.0)
@@ -138,6 +148,18 @@ module CrystalEdge
     def rotate(q : Quaternion)
       quat = q * self * q.conjugate
       Vector3.new(quat.x, quat.y, quat.z)
+    end
+
+    def angle
+      Vector3.new(
+        Math.atan2(self.z, self.y),
+        Math.atan2(self.x, self.z),
+        Math.atan2(self.y, self.x)
+      )
+    end
+
+    def rotate(euler : Vector3)
+      Vector3.new(angle + euler, magnitude)
     end
   end
 end
