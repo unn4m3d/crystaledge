@@ -14,8 +14,8 @@ module CrystalEdge
 
     def initialize(angle : Vector3, length : Float64 = 1.0)
       @x = 1.0
-      @y = @x * Math.tan(angle.z)
-      @z = @x * Math.tan(angle.y)
+      @y = Math.tan(angle.z)
+      @z = Math.tan(angle.y)
       normalize!
       @x *= length
       @y *= length
