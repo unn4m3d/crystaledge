@@ -13,18 +13,18 @@ module CrystalEdge
     end
 
     def initialize(angle : Vector3, length : Float64 = 1.0)
-      #vec = Vector3.new(
-      #  Math.tan(angle.y),
-      #  1.0 / Math.tan(angle.x),
-      #  1.0
-      #).normalize * length
-      #@x, @y, @z = vec.x, vec.y, vec.z
-
       vec = Vector3.new(
-        Math.sin(angle.y),
-        Math.sin(angle.z),
-        Math.sin(angle.x)
+        Math.tan(angle.y),
+        1.0 / Math.tan(angle.x),
+        1.0
       ).normalize * length
+
+
+      #vec = Vector3.new(
+      #  Math.sin(angle.y),
+      #  Math.sin(angle.z),
+      #  Math.sin(angle.x)
+      #).normalize * length
       @x, @y, @z = vec.x, vec.y, vec.z
     end
 

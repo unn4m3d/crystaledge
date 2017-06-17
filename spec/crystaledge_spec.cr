@@ -125,4 +125,18 @@ describe CrystalEdge do
     q = Q.from_euler(ea)
     q.to_euler.should eq(ea)
   end
+
+  it "constructs Vector3 from angle and magnitude" do
+    vec = V3.new(1.0, 2.0, 3.0)
+    V3.new(vec.angle, vec.magnitude).should eq(vec)
+  end
+
+  it "rotates Vector3" do
+    v0 = V3.new(1.0, 2.0, 3.0)
+    v1 = V3.new(-1.0, 2.0, -3.0)
+    v0
+      .rotate(V3.new(0.0, Math::PI, 0.0))
+      .rotate(V3.new(0.0, -Math::PI, 0.0))
+      .should eq(v0)
+  end
 end
