@@ -57,7 +57,7 @@ module CrystalEdge
     end
   end
 
-  class Vector2
+  struct Vector2
     def *(other : Matrix3)
       Vector2.new(
         self.x*other[0, 0] + self.y*other[1, 0] + other[2, 0],

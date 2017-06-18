@@ -2,7 +2,7 @@ require "math"
 require "./vector3"
 
 module CrystalEdge
-  class Quaternion
+  struct Quaternion
     getter x, y, z, w
     setter x, y, z, w
 
@@ -226,7 +226,7 @@ module CrystalEdge
     end
   end
 
-  class Vector3
+  struct Vector3
     def rotate(q : Quaternion)
       qi = q.conjugate
       qq = (q*self)*qi

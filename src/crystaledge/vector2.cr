@@ -2,7 +2,7 @@ require "math"
 
 module CrystalEdge
   # Representation of 2D vector
-  class Vector2
+  struct Vector2
     property x, y
     @x : Float64
     @y : Float64

@@ -2,7 +2,7 @@ require "math"
 require "../crystaledge"
 
 module CrystalEdge
-  class Vector3
+  struct Vector3
     property x, y, z
 
     @x : Float64

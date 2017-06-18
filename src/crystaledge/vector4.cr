@@ -1,7 +1,7 @@
 require "math"
 
 module CrystalEdge
-  class Vector4
+  struct Vector4
     property x, y, z, w
 
     @x : Float64
