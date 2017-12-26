@@ -79,6 +79,8 @@ module CrystalEdge
       self.matrix != other.matrix
     end
 
+    delegate to_unsafe, to: @matrix
+
     def +(other : typeof(self))
       return typeof(self).new { |i| self[i] + other[i] }
     end
