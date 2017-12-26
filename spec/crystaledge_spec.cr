@@ -7,8 +7,8 @@ alias Q = CrystalEdge::Quaternion
 alias M3 = CrystalEdge::Matrix3
 alias M4 = CrystalEdge::Matrix4
 
-describe CrystalEdge do
-  it "passes Vector2 tests" do
+describe CrystalEdge::Vector2 do
+  it "works" do
     vec1 = V2.new(1.0, 2.0)
     vec2 = V2.new(3.0, 4.0)
     vsum = V2.new(4.0, 6.0)
@@ -34,8 +34,10 @@ describe CrystalEdge do
     vec1.should eq(V2.new(42.0, 0.0))
     vec1.normalize.magnitude.should eq(1.0)
   end
+end
 
-  it "passes Vector3 tests" do
+describe CrystalEdge::Vector3 do
+  it "works" do
     vec1 = V3.zero
     vec2 = V3.new(3.0, 4.0, 0.0)
     (vec1 == vec2).should eq(false)
@@ -64,7 +66,9 @@ describe CrystalEdge do
     vec5.should eq(V3.new(42.0, 0.0, 0.0))
     vec5.normalize.magnitude.should eq(1.0)
   end
+end
 
+describe CrystalEdge::Vector4 do
   it "passes Vector4 tests" do
     vec1 = V4.zero
     vec2 = V4.new(1.0, 2.0, 3.0, 4.0)
@@ -83,8 +87,10 @@ describe CrystalEdge do
     vec1.should eq(V4.new(42.0, 0.0, 0.0, 0.0))
     vec1.normalize.magnitude.should eq(1.0)
   end
+end
 
-  it "passes Quaternion tests" do
+describe CrystalEdge::Quaternion do
+  it "works" do
     q1 = Q.new(1.0, 1.0, 1.0, 1.0)
     q2 = Q.new(-1.0, -1.0, -1.0, 1.0)
     q3 = Q.new(1.0, 1.0, 1.0, -1.0)
@@ -92,23 +98,32 @@ describe CrystalEdge do
     (-(q1.conjugate)).should eq(q3)
     (q2 + q3).should eq(Q.zero)
   end
+end
 
-  it "passes Matrix3 tests" do
+describe CrystalEdge::Matrix3 do
+  it "works" do
     m0 = M3.new { |i| 0.0 }
     m1 = M3.new { |i| i.to_f }
     m2 = M3.new { |i| 2.0*i }
 
-    (m1 == m2).should eq(false)
+    m1.should_not eq(m2)
     (m1 != m2).should eq(true)
-    (m0 == m0).should eq(true)
+    m0.should eq(m0)
     (m0 + m1).should eq(m1)
     (m1*2.0).should eq(m2)
 
     m0.make_translation!(V2.new(0.0, 1.0))
     m0[1, 2].should eq(1.0)
-  end
 
-  it "passes Matrix4 tests" do
+    m3 = M3.new(StaticArray(Float64, 9).new(0.0))
+    m4 = M3.new(StaticArray(Float64, 9).new(0.0))
+    m4[8] = 1.0
+    m3.should_not eq(m4)
+  end
+end
+
+describe CrystalEdge::Matrix4 do
+  it "works" do
     m0 = M4.new { |i| 0.0 }
     m1 = M4.new { |i| i.to_f }
     m2 = M4.new { |i| 2.0*i }
@@ -119,7 +134,9 @@ describe CrystalEdge do
     (m0 + m1).should eq(m1)
     (m1*2.0).should eq(m2)
   end
+end
 
+describe CrystalEdge do
   it "converts Quaternion and Euler angles" do
     ea = V3.new(1.0, 2.0, Math::PI)
     q = Q.from_euler(ea)

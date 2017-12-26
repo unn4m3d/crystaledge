@@ -1,6 +1,8 @@
 macro matrix(size, type)
   @matrix : {{type}}[{{size*size}}]
 
+  getter matrix
+
   def initialize(elems : {{type}}[{{size*size}}])
     @matrix = elems
   end
@@ -70,17 +72,11 @@ end
 module CrystalEdge
   module Matrix
     def ==(other : typeof(self))
-      0.upto(size - 1) { |i|
-        return false unless other[i] == self[i]
-      }
-      true
+      self.matrix == other.matrix
     end
 
     def !=(other : typeof(self))
-      (size*size - 1).times { |i|
-        return true unless other[i] == self[i]
-      }
-      false
+      self.matrix != other.matrix
     end
 
     def +(other : typeof(self))
