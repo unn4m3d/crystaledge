@@ -7,6 +7,10 @@ module CrystalEdge
     @x : Float64
     @y : Float64
 
+    def values
+      {@x, @y}
+    end
+
     def initialize(@x, @y)
     end
 

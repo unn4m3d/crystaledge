@@ -112,13 +112,21 @@ describe CrystalEdge::Matrix3 do
     (m0 + m1).should eq(m1)
     (m1*2.0).should eq(m2)
 
-    m0.make_translation!(V2.new(0.0, 1.0))
-    m0[1, 2].should eq(1.0)
+    m0.make_translation!(V2.new(2.0, 3.0))
+    m0.matrix.to_a.should eq([1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 2.0, 3.0, 1.0])
 
-    m3 = M3.new(StaticArray(Float64, 9).new(0.0))
-    m4 = M3.new(StaticArray(Float64, 9).new(0.0))
+    m3 = M3.new(0.0)
+    m4 = M3.new(0.0)
     m4[8] = 1.0
     m3.should_not eq(m4)
+  end
+
+  it "is column-major" do
+    mat = M3.new do |r, c|
+      c * 10.0 + r
+    end
+
+    mat.matrix.to_a.should eq([0.0, 1.0, 2.0, 10.0, 11.0, 12.0, 20.0, 21.0, 22.0])
   end
 end
 

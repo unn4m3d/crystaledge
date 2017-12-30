@@ -14,6 +14,10 @@ module CrystalEdge
     def initialize(@x, @y, @z, @w : Float64)
     end
 
+    def values
+      {@x, @y, @z, @w}
+    end
+
     # Converts euler angles to Quaternion
     # Angles are in radians!
     def self.from_euler(euler : Vector3)
