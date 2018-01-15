@@ -53,8 +53,14 @@ module CrystalEdge
       self**other / (self.magnitude * other.magnitude)
     end
 
+    # Returns direction of a vector
     def angle
       Math.atan2(self.y, self.x)
+    end
+
+    # ditto
+    def heading
+      angle
     end
 
     # Performs component addition
