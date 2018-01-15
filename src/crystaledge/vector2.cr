@@ -53,6 +53,10 @@ module CrystalEdge
       self**other / (self.magnitude * other.magnitude)
     end
 
+    def angle
+      Math.atan2(self.y, self.x)
+    end
+
     # Performs component addition
     def +(other : Vector2)
       Vector2.new(self.x + other.x, self.y + other.y)

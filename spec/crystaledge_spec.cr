@@ -33,6 +33,8 @@ describe CrystalEdge::Vector2 do
     vec1.should_not eq(vzero)
     vec1.should eq(V2.new(42.0, 0.0))
     vec1.normalize.magnitude.should eq(1.0)
+
+    vec1.angle.should eq(0.0)
   end
 end
 
