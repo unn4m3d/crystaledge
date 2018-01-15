@@ -7,10 +7,12 @@ module CrystalEdge
     @x : Float64
     @y : Float64
 
+    # Converts vector to a tuple of values
     def values
       {@x, @y}
     end
 
+    # Initializes vector with `x` and `y`
     def initialize(@x, @y)
     end
 
@@ -19,8 +21,10 @@ module CrystalEdge
       return Vector2.new(0.0, 0.0)
     end
 
+    # Fills current vector with zero
     def zero!
       @x = @y = 0.0
+      self
     end
 
     # Returns dot product of two vectors
