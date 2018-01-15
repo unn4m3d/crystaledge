@@ -114,6 +114,7 @@ module CrystalEdge
       Vector2.new(self.x, self.y)
     end
 
+    # ditto
     def clone(&b)
       c = clone
       b.call c
