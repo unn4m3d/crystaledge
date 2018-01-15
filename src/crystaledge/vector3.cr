@@ -168,6 +168,10 @@ module CrystalEdge
       )
     end
 
+    def heading
+      angle
+    end
+
     def rotate(euler : Vector3)
       Vector3.new(angle + euler, magnitude)
     end
