@@ -321,7 +321,7 @@ module CrystalEdge
             end
           end
           str += " |"
-          puts str
+          return str
         end
       end
     {% end %}
