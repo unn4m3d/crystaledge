@@ -168,7 +168,7 @@ module CrystalEdge
         h.times do |c|
           cell = T.new 0
           width.times do |o|
-            cell += self[o,c] * other[r, o]
+            cell += self[o, c] * other[r, o]
           end
           result[r, c] = cell
         end
@@ -294,6 +294,17 @@ module CrystalEdge
       # Changes the value of current matrix.
       def {{key}}!(*values)
         copy_from {{key}}(*values)
+      end
+
+      # Return string representation of the matrix
+      def to_s
+        W.times do |col|
+          col_str = "| "
+          H.times do |row|
+            col_str += "#{mat[index(row, col)]} "
+          end
+          col_str += "\n |"
+        end
       end
     {% end %}
   end
