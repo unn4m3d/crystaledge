@@ -298,12 +298,30 @@ module CrystalEdge
 
       # Return string representation of the matrix
       def to_s
-        W.times do |col|
-          col_str = "| "
-          H.times do |row|
-            col_str += "#{mat[index(row, col)]} "
+        # Format matrix by taking longest number
+        longer = 0
+        W.times do |row|
+          H.times do |col|
+            if longer < "#{@matrix[index(row, col)]}  ".size
+              longer = "#{@matrix[index(row, col)]}  ".size
+            end
           end
-          col_str += "\n |"
+        end
+        # Printing matrix
+        W.times do |row|
+          str = "| "
+          H.times do |col|
+            if col != H-1
+              str += "#{@matrix[index(row, col)]}  "
+            else
+              str += "#{@matrix[index(row, col)]}"
+            end            
+            (longer - "#{@matrix[index(row, col)]}  ".size).times do
+              str += " "
+            end
+          end
+          str += " |"
+          puts str
         end
       end
     {% end %}
