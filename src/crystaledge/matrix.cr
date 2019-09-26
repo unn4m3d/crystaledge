@@ -172,7 +172,7 @@ module CrystalEdge
         h.times do |c|
           cell = T.new 0
           width.times do |o|
-            cell += self[o,c] * other[r, o]
+            cell += self[o, c] * other[r, o]
           end
           result[r, c] = cell
         end
@@ -298,6 +298,35 @@ module CrystalEdge
       # Changes the value of current matrix.
       def {{key}}!(*values)
         copy_from {{key}}(*values)
+      end
+
+      # Return string representation of the matrix
+      def to_s
+        # Format matrix by taking longest number
+        longer = 0
+        W.times do |row|
+          H.times do |col|
+            if longer < "#{@matrix[index(row, col)]}  ".size
+              longer = "#{@matrix[index(row, col)]}  ".size
+            end
+          end
+        end
+        # Printing matrix
+        W.times do |row|
+          str = "| "
+          H.times do |col|
+            if col != H-1
+              str += "#{@matrix[index(row, col)]}  "
+            else
+              str += "#{@matrix[index(row, col)]}"
+            end            
+            (longer - "#{@matrix[index(row, col)]}  ".size).times do
+              str += " "
+            end
+          end
+          str += " |"
+          return str
+        end
       end
     {% end %}
   end
