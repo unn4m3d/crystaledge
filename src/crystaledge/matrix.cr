@@ -37,6 +37,10 @@ module CrystalEdge
 
     delegate each, to_unsafe, to: matrix
 
+    def unsafe_fetch(idx : Int)
+      matrix.unsafe_fetch idx
+    end
+
     # Returns width (number of columns)
     def width
       W
