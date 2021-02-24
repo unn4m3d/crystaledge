@@ -138,6 +138,7 @@ describe CrystalEdge::Matrix3 do
     m0.to_s io
 
     io.to_s.should eq %(| 0.0  1.0  2.0 |\n| 1.0  2.0  3.0 |\n| 2.0  3.0  4.0 |\n)
+    m0.to_s.should eq io.to_s
   end
 end
 
