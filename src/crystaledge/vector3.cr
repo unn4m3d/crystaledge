@@ -184,15 +184,7 @@ module CrystalEdge
       rz2 = Matrix3.new.make_rotation! euler.z, 0.0, 0.0, 1.0
 
       r = rz * rx * rz2
-
-      puts rz
-      puts rx
-      puts rz2
-      puts r
-
-      v = Vector3.new(r * Matrix(Float64, 3, 1).new { |i| self.values[i] })
-      puts v
-      v
+      Vector3.new(r * Matrix(Float64, 3, 1).new { |i| self.values[i] })
     end
   end
 end
