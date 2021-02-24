@@ -16,6 +16,12 @@ module CrystalEdge
     def initialize(@x, @y, @z : Float64)
     end
 
+    def initialize(matrix : Matrix(Float64, N, M)) forall N, M
+      @x = matrix[0]
+      @y = matrix[1]
+      @z = matrix[2]
+    end
+
     def initialize(angle : Vector3, length : Float64 = 1.0)
       vec = Vector3.new(
         Math.tan(angle.y),
@@ -173,7 +179,20 @@ module CrystalEdge
     end
 
     def rotate(euler : Vector3)
-      Vector3.new(angle + euler, magnitude)
+      rz = Matrix3.new.make_rotation! euler.x, 0.0, 0.0, 1.0
+      rx = Matrix3.new.make_rotation! euler.y, 1.0, 0.0, 0.0
+      rz2 = Matrix3.new.make_rotation! euler.z, 0.0, 0.0, 1.0
+
+      r = rz * rx * rz2
+
+      puts rz
+      puts rx
+      puts rz2
+      puts r
+
+      v = Vector3.new(r * Matrix(Float64, 3, 1).new { |i| self.values[i] })
+      puts v
+      v
     end
   end
 end

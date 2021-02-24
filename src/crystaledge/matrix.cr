@@ -165,16 +165,13 @@ module CrystalEdge
 
     # Calculates the product of two matrices
     def *(other : Matrix(T, W, U)) forall U
-      # TODO : Use faster algorithms
       result = Matrix(T, H, U).new
-      w, h = other.width, height
-      w.times do |r|
-        h.times do |c|
-          cell = T.new 0
-          width.times do |o|
-            cell += self[o, c] * other[r, o]
+
+      result.height.times do |i|
+        result.width.times do |j|
+          result[i, j] = (0...width).reduce(T.new 0) do |memo, r|
+            memo + self[i, r] * other[r, j]
           end
-          result[r, c] = cell
         end
       end
       result
@@ -301,7 +298,7 @@ module CrystalEdge
       end
 
       # Return string representation of the matrix
-      def to_s
+      def to_s(io)
         # Format matrix by taking longest number
         longer = 0
         W.times do |row|
@@ -312,20 +309,19 @@ module CrystalEdge
           end
         end
         # Printing matrix
-        W.times do |row|
-          str = "| "
-          H.times do |col|
+        H.times do |row|
+          io << "| "
+          W.times do |col|
             if col != H-1
-              str += "#{@matrix[index(row, col)]}  "
+              io << "#{@matrix[index(row, col)]}  "
             else
-              str += "#{@matrix[index(row, col)]}"
+              io << "#{@matrix[index(row, col)]}"
             end            
             (longer - "#{@matrix[index(row, col)]}  ".size).times do
-              str += " "
+              io << " "
             end
           end
-          str += " |"
-          return str
+          io << " |\n"
         end
       end
     {% end %}
