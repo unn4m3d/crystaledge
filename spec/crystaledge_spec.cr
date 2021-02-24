@@ -159,11 +159,19 @@ describe CrystalEdge do
   end
 
   it "rotates Vector3" do
-    v0 = V3.new(1.0, 2.0, 3.0)
-    v1 = V3.new(-1.0, 2.0, -3.0)
-    v0
-      .rotate(V3.new(0.0, Math::PI, 0.0))
-      .rotate(V3.new(0.0, -Math::PI, 0.0))
-      .should eq(v0)
+    vec = CrystalEdge::Vector3.new 1.0, 0.0, 0.0
+
+    vec2 = vec.rotate(CrystalEdge::Vector3.new(0.0, 0.0, Math::PI/2))
+
+    vec2.x.should be_close(0, 0.001)
+    vec2.y.should be_close(1, 0.001)
+    vec2.z.should be_close(0, 0.001)
+
+    vec2 = vec2.rotate(CrystalEdge::Vector3.new(Math::PI/2, 0.0, 0.0))
+
+    vec2.x.should be_close(-1, 0.001)
+    vec2.y.should be_close(0, 0.001)
+    vec2.z.should be_close(0, 0.001)
+
   end
 end
