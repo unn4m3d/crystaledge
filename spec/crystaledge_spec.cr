@@ -130,6 +130,15 @@ describe CrystalEdge::Matrix3 do
 
     mat.matrix.to_a.should eq([0.0, 1.0, 2.0, 10.0, 11.0, 12.0, 20.0, 21.0, 22.0])
   end
+
+  it "can be printed nicely" do 
+    m0 = M3.new { |i,j| (i+j).to_f64 }
+
+    io = IO::Memory.new
+    m0.to_s io
+
+    io.to_s.should eq %(| 0.0  1.0  2.0 |\n| 1.0  2.0  3.0 |\n| 2.0  3.0  4.0 |\n)
+  end
 end
 
 describe CrystalEdge::Matrix4 do
