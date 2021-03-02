@@ -293,14 +293,14 @@ module CrystalEdge
 
       # {{k.capitalize.id}}s matrix
       def {{key}}(*values)
-        self * typeof(self).make_{{method}}(*values)
+        self * make_{{method}}!(*values)
       end
 
       # {{k.capitalize.id}}s this matrix
       #
       # Changes the value of current matrix.
       def {{key}}!(*values)
-        @matrix = {{key}}(*values)
+        @matrix = {{key}}(*values).matrix
         raise "Too short: #{@matrix.size}" if @matrix.size < width * height
         self
       end
