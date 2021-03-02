@@ -32,6 +32,12 @@ module CrystalEdge
       @matrix = mat
     end
 
+    def self.identity
+      new do |i, j|
+        i == j ? T.new 1 : T.new 0
+      end
+    end
+
     include Enumerable(T)
     include Indexable(T)
 

@@ -154,6 +154,20 @@ describe CrystalEdge::Matrix4 do
     (m0 + m1).should eq(m1)
     (m1*2.0).should eq(m2)
   end
+
+  it "initializes identity matrix" do
+    m = M4.identity
+
+    4.times do |i|
+      4.times do |j|
+        if i == j
+          m[i, j].should eq 1.0
+        else
+          m[i, j].should eq 0.0
+        end
+      end
+    end
+  end
 end
 
 describe CrystalEdge do
