@@ -294,7 +294,9 @@ module CrystalEdge
       #
       # Changes the value of current matrix.
       def {{key}}!(*values)
-        copy_from {{key}}(*values)
+        @matrix = {{key}}(*values)
+        raise "Too short: #{@matrix.size}" if @matrix.size < width * height
+        self
       end
 
       # Return string representation of the matrix
