@@ -293,7 +293,7 @@ module CrystalEdge
 
       # {{k.capitalize.id}}s matrix
       def {{key}}(*values)
-        self * make_{{method}}!(*values)
+        self * make_{{method}}(*values)
       end
 
       # {{k.capitalize.id}}s this matrix
