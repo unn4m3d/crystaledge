@@ -170,6 +170,17 @@ describe CrystalEdge::Matrix4 do
   end
 end
 
+describe CrystalEdge::Transform do
+  it "initializes with identity matrix" do
+    CrystalEdge::Transform.new.matrix.should eq(M4.identity)
+  end
+
+  it "translates" do
+    v3 = V3.new(1.0,2.0,3.0)
+    CrystalEdge::Transform.new.translate!(v3).translation.should eq(v3)
+  end
+end
+
 describe CrystalEdge do
   it "converts Quaternion and Euler angles" do
     ea = V3.new(1.0, 2.0, Math::PI)

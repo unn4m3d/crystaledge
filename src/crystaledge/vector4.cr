@@ -120,11 +120,11 @@ module CrystalEdge
     end
 
     def ==(other : Vector4)
-      self.x == other.x && self.y == other.y && self.z == other.z && self.w == other.w # TODO : Comparsion with EPSILON
+      self.x == other.x && self.y == other.y && self.z == other.z && self.w == other.w
     end
 
     def !=(other : Vector4)
-      self.x != other.x || self.y != other.y || self.z != other.z || self.w != other.w # TODO : Comparsion with EPSILON
+      self.x != other.x || self.y != other.y || self.z != other.z || self.w != other.w
     end
 
     def to_s
